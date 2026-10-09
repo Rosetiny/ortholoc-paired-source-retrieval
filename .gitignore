@@ -1,0 +1,27 @@
+# Unpublished results, frozen similarity matrices and server check output. Never commit.
+private/
+
+# OrthoLoC data and anything derived from it
+data/
+psr_data/
+*.npz
+*.npy
+*.tif
+*.tiff
+*.jpg
+*.jpeg
+*.png
+
+# Model files and logs
+*.pth
+*.pt
+*.ckpt
+*.log
+
+# Secrets and local environment
+.env
+*.pem
+*.key
+
+__pycache__/
+.pytest_cache/

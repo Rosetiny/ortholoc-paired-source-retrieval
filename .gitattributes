@@ -1,0 +1,2 @@
+# Manifest checksums are taken over the file bytes, so line endings must not change on checkout.
+manifests/* text eol=lf
