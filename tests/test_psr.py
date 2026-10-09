@@ -123,8 +123,20 @@ def test_embeddings_are_scored_by_cosine_similarity():
 
 # ---------------------------------------------------------------- manifests
 
-def test_at_least_the_outplace_manifests_exist():
-    assert {"outplace_r", "outplace_xdop"} <= set(AVAILABLE)
+def test_all_three_manifests_exist():
+    assert set(AVAILABLE) == set(psr.CONDITIONS)
+
+
+@pytest.mark.parametrize("condition", sorted(psr.CONDITIONS))
+def test_every_condition_can_be_evaluated_end_to_end(condition, tmp_path):
+    truth = psr.positives(psr.load_condition(condition))
+    queries, gallery = list(truth), list(truth.values())
+    scores = tmp_path / "scores.npz"
+    np.savez(scores, query_ids=np.array(queries), gallery_ids=np.array(gallery[::-1]),
+             similarity=np.eye(len(queries))[:, ::-1])
+    result = psr.evaluate_file(condition, scores)
+    assert result["hits_at_1"] == result["num_queries"] == psr.CONDITIONS[condition]["size"]
+    assert result["R@1"] == result["AP"] == 100.0
 
 
 @pytest.mark.parametrize("condition", AVAILABLE)

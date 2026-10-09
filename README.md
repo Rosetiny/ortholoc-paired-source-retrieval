@@ -1,9 +1,5 @@
 # OrthoLoC-PSR: Paired-Source UAV-to-DOP Retrieval Benchmark
 
-> **Status: work in progress.** The `inplace_r` manifest has not been added yet, so
-> `python validate_manifest.py` reports it as missing. `outplace_r` and `outplace_xdop`
-> are usable.
-
 A fixed image-retrieval protocol derived from the public
 [OrthoLoC](https://deepscenario.github.io/OrthoLoC/) dataset. The same UAV queries are
 retrieved against orthophoto galleries built from two different reference sources, so
@@ -84,6 +80,17 @@ the result does not depend on the order of the gallery.
 The evaluator refuses inputs with NaN/Inf scores, duplicate ids, a missing positive, or
 gallery items that do not belong to the condition (for example xDOP references in an
 R-DOP condition).
+
+## Checks behind the protocol
+
+- The manifests were generated from, and re-checked against, the file lists produced by
+  the data loader of the reference evaluation.
+- For all 496 OutPlace queries, the UAV image stored in the R-DOP sample and the one
+  stored in the xDOP sample are the same array, so `outplace_r` and `outplace_xdop`
+  differ only in the gallery.
+- `prepare_dataset.py` was compared with an existing unpacked copy of the evaluation
+  inputs for all 1,134 samples: every query file is byte-identical and every reference
+  is pixel-identical.
 
 ## Limitations
 
