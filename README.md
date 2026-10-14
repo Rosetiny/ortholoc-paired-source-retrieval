@@ -99,7 +99,28 @@ R-DOP condition).
 - Both reference sources occur in the OrthoLoC training split, so `outplace_xdop`
   measures a change of reference source, not an unseen one.
 
+## License
+
+The MIT License in `LICENSE` applies only to the original code of OrthoLoC-PSR: the
+evaluator (`evaluate.py`, `ortholoc_psr.py`), the data preparation script
+(`prepare_dataset.py`), the manifest validator (`validate_manifest.py`) and the tests
+(`tests/`).
+
+The query–gallery manifests (`manifests/*.csv`) are **not** covered by the MIT License.
+They are derived from OrthoLoC and contain OrthoLoC sample identifiers, file names and
+the query–reference correspondences of OrthoLoC's paired samples. Any use of them is
+subject to the license and attribution requirements of OrthoLoC (CC BY-NC-SA 4.0) and of
+the upstream data on which OrthoLoC is built.
+
+This repository does not redistribute any OrthoLoC imagery. The UAV images, the
+orthophotos, the ground truth and the splits must be obtained from the OrthoLoC authors.
+
 ## Citation
+
+OrthoLoC-PSR is built entirely on OrthoLoC
+([project page](https://deepscenario.github.io/OrthoLoC/),
+[repository](https://github.com/deepscenario/OrthoLoC)). If you use it, cite the
+OrthoLoC paper:
 
 ```bibtex
 @inproceedings{dhaouadi2025ortholoc,
